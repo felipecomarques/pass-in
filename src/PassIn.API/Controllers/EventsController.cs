@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PassIn.Application.UseCases.Events.Register;
 using PassIn.Communication.Requests;
 
 namespace PassIn.API.Controllers;
@@ -9,6 +10,8 @@ public class EventsController : ControllerBase
     [HttpPost]
     public IActionResult Register([FromBody] RequestEventJson request)
     {
+        var useCase = new RegisterEventUseCase();
+        useCase.Execute(request);
         return Created();
     }
 }
