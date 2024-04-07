@@ -4,11 +4,13 @@ using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
 
 namespace PassIn.API.Controllers;
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class EventsController : ControllerBase
 {
     [HttpPost]
+    [ProducesResponseType(typeof(ResponseRegisteredEventJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
     public IActionResult Register([FromBody] RequestEventJson request)
     {
         try
