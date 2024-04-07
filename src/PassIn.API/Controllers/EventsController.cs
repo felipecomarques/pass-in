@@ -2,6 +2,7 @@
 using PassIn.Application.UseCases.Events.Register;
 using PassIn.Communication.Requests;
 using PassIn.Communication.Responses;
+using PassIn.Exceptions;
 
 namespace PassIn.API.Controllers;
 [Route("[controller]")]
@@ -19,7 +20,7 @@ public class EventsController : ControllerBase
             useCase.Execute(request);
             return Created();
         }
-        catch (ArgumentException ex)
+        catch (PassInException ex)
         {
             return BadRequest(new ResponseErrorJson(ex.Message));
         }
