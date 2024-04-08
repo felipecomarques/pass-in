@@ -9,6 +9,16 @@ namespace PassIn.API.Controllers;
 [ApiController]
 public class EventsController : ControllerBase
 {
+    [HttpGet]
+    [Route("{eventId}")]
+    [ProducesResponseType(typeof(RequestEventJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public IActionResult GetById([FromRoute] Guid eventId)
+    {
+        return Ok("GetById");
+    }
+
+
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredEventJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
@@ -26,7 +36,7 @@ public class EventsController : ControllerBase
         }
         catch
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorJson("Unknown Error. "));
+            return StatusCode(StatusCodes.Status500InternalServerError, new ResponseErrorJson("Unknown Error."));
         }
     }
 }
