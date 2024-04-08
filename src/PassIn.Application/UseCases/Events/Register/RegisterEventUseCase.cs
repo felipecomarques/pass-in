@@ -28,12 +28,12 @@ public class RegisterEventUseCase
     private void Validate(RequestEventJson request)
     {
         if (request.MaximumAttendees < 1)
-            throw new PassInException("Maximum attendees must be greater than 0.");
+            throw new OnValidationException("Maximum attendees must be greater than 0.");
 
         if (string.IsNullOrWhiteSpace(request.Title))
-            throw new PassInException("Name is required.");
+            throw new OnValidationException("Name is required.");
 
         if (string.IsNullOrWhiteSpace(request.Details))
-            throw new PassInException("Name is required.");
+            throw new OnValidationException("Name is required.");
     }
 }
