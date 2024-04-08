@@ -17,8 +17,8 @@ public class EventsController : ControllerBase
         try
         {
             var useCase = new RegisterEventUseCase();
-            useCase.Execute(request);
-            return Created();
+            var response = useCase.Execute(request);
+            return Created(string.Empty, response);
         }
         catch (PassInException ex)
         {
