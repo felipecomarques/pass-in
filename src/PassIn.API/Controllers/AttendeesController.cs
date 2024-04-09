@@ -9,6 +9,15 @@ namespace PassIn.API.Controllers;
 [ApiController]
 public class AttendeesController : ControllerBase
 {
+    [HttpGet]
+    [Route("{eventId}")]
+    [ProducesResponseType(typeof(ResponseAllAttendeesJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public IActionResult Get([FromRoute] Guid eventId)
+    {
+        return Ok();
+    }
+
     [HttpPost]
     [Route("{eventId}/Register")]
     [ProducesResponseType(typeof(ResponseRegisteredJson), StatusCodes.Status201Created)]
