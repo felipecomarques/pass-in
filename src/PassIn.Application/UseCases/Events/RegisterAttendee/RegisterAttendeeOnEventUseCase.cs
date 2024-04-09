@@ -48,7 +48,7 @@ public class RegisterAttendeeOnEventUseCase
             .Attendees
             .Any(attendees => attendees.Email.Equals(request.Email) && attendees.Event_Id == eventId);
         if (attendeeExist is true)
-            throw new OnValidationException("Attendee already registered on this event.");
+            throw new ConflictException("Attendee already registered on this event.");
 
         int attendeesCount = _dbContext.Attendees.Count(attendees => attendees.Event_Id == eventId);
         if (attendeesCount > eventEntity.Maximum_Attendees - 1)
