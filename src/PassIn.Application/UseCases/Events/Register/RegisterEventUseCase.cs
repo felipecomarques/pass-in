@@ -6,7 +6,7 @@ using PassIn.Infrastructure;
 namespace PassIn.Application.UseCases.Events.Register;
 public class RegisterEventUseCase
 {
-    public ResponseRegisteredEventJson Execute(RequestEventJson request)
+    public ResponseRegisteredJson Execute(RequestEventJson request)
     {
         Validate(request);
 
@@ -22,7 +22,7 @@ public class RegisterEventUseCase
         dbContext.Events.Add(entity);
         dbContext.SaveChanges();
 
-        return new ResponseRegisteredEventJson { Id = entity.Id };
+        return new ResponseRegisteredJson { Id = entity.Id };
     }
 
     private void Validate(RequestEventJson request)
