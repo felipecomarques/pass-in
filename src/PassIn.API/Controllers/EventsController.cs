@@ -20,14 +20,20 @@ public class EventsController : ControllerBase
         return Ok(response);
     }
 
-
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredEventJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    public IActionResult Register([FromBody] RequestEventJson request)
+    public IActionResult RegisterEvent([FromBody] RequestEventJson request)
     {
         var useCase = new RegisterEventUseCase();
         var response = useCase.Execute(request);
         return Created(string.Empty, response);
+    }
+
+    [HttpPost]
+    [Route("{attendeeId}/Register")]
+    public IActionResult RegisterAttendee([FromRoute] Guid attendeeId, [FromBody] RequestRegisterEventJson request)
+    {
+        return Created();
     }
 }
